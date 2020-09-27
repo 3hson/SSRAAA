@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URl = 'localhost:3000/api';
+const API_URl = 'http://localhost:3000/api';
 
 const login = async (email, password) => {
   try {
@@ -23,10 +23,10 @@ const register  = async (username, email, password) => {
   try {
     const response = await axios.post(
       `${API_URl}/users`,
-      JSON.stringify({ user: { username, email, password } }),
+      JSON.stringify({ user: { username, email, password }}),
       {
         headers: {
-          'Content-Type': 'applicatizon/json',
+          'Content-Type': 'application/json',
         },
       }
     );
