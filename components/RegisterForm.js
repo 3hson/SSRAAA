@@ -1,12 +1,15 @@
 
 import Router from 'next/router';
 import api from '../pages/api';
+import {UserDataContext} from '../lib/userDataContext';
 import styles from '../styles/components/RegisterForm.module.css';
 export default function RegisterForm() {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const {userData, setUserData} = React.useContext(UserDataContext);
   
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -29,11 +32,12 @@ export default function RegisterForm() {
       if(status !==200 ) {
         //show error
         console.log(res);
+      }else {
+        if(data &&  data.user) {
+          setUserData(data.user);
+        }
+        Router.push('/');
       }
-      if(data &&  data.user) {
-        window.localStorage.setItem('userData', JSON.stringify(data.user));
-      }
-      Router.push('/');
     } catch(err) {
       console.log(err);
     }
