@@ -1,4 +1,4 @@
-import styles from '../styles/LoginForm.module.css';
+import styles from '../styles/components/LoginForm.module.css';
 
 export default function LoginForm() {
   const [username, setUsername] = React.useState('');
@@ -21,9 +21,11 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" required value={username} onChange={handleUsernameChange} placeholder="نام کاربری" />
-        <input type="password"  required value={password} onChange={handlePasswordChange}  placeholder="رمز عبور" />
+      <form className={styles.form} onSubmit={handleFormSubmit}>
+        <h1>ورود</h1>
+        <input className={styles.input} type="text" required value={username} onChange={handleUsernameChange} placeholder="نام کاربری" />
+        <input className={styles.input} type="password"  required value={password} onChange={handlePasswordChange}  placeholder="رمز عبور" />
+        <button type="submit">ورود</button>
       </form>
     </>
   );
