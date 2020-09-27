@@ -1,6 +1,7 @@
 import api from '../pages/api';
 import Router from 'next/router';
 import {UserDataContext} from '../lib/userDataContext';
+import { setCookie, removeCookie } from '../lib/cookies';
 
 import styles from '../styles/components/LoginForm.module.css';
 export default function LoginForm() {
@@ -29,6 +30,7 @@ export default function LoginForm() {
       } else {
         if(data &&  data.user) {
           setUserData(data.user);
+          setCookie('token', data.user.token);
         }
         Router.push('/');
       }

@@ -2,6 +2,8 @@
 import Router from 'next/router';
 import api from '../pages/api';
 import {UserDataContext} from '../lib/userDataContext';
+import { setCookie, removeCookie } from '../lib/cookies';
+
 import styles from '../styles/components/RegisterForm.module.css';
 export default function RegisterForm() {
   const [username, setUsername] = React.useState('');
@@ -35,6 +37,7 @@ export default function RegisterForm() {
       }else {
         if(data &&  data.user) {
           setUserData(data.user);
+          setCookie('token', data.user.token);
         }
         Router.push('/');
       }
